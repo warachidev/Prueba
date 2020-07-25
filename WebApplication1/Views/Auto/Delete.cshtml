@@ -1,0 +1,81 @@
+﻿@model WebApplication1.Models.autos
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>autos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.placa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.placa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechafab)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechafab)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.marca.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.marca.nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

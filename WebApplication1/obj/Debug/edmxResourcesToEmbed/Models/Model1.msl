@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BDAutosModelStoreContainer" CdmEntityContainer="BDAutosEntities">
+    <EntitySetMapping Name="autos">
+      <EntityTypeMapping TypeName="BDAutosModel.autos">
+        <MappingFragment StoreEntitySet="autos">
+          <ScalarProperty Name="id_auto" ColumnName="id_auto" />
+          <ScalarProperty Name="placa" ColumnName="placa" />
+          <ScalarProperty Name="modelo" ColumnName="modelo" />
+          <ScalarProperty Name="id_marca" ColumnName="id_marca" />
+          <ScalarProperty Name="cc" ColumnName="cc" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="fechafab" ColumnName="fechafab" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="marca">
+      <EntityTypeMapping TypeName="BDAutosModel.marca">
+        <MappingFragment StoreEntitySet="marca">
+          <ScalarProperty Name="id_marca" ColumnName="id_marca" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

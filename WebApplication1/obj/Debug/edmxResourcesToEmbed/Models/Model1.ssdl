@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BDAutosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="autos">
+    <Key>
+      <PropertyRef Name="id_auto" />
+    </Key>
+    <Property Name="id_auto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="placa" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="modelo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_marca" Type="int" Nullable="false" />
+    <Property Name="cc" Type="int" Nullable="false" />
+    <Property Name="color" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="fechafab" Type="datetime" Nullable="false" />
+    <Property Name="estado" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="marca">
+    <Key>
+      <PropertyRef Name="id_marca" />
+    </Key>
+    <Property Name="id_marca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="estado" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK__autos__id_marca__398D8EEE">
+    <End Role="marca" Type="Self.marca" Multiplicity="1" />
+    <End Role="autos" Type="Self.autos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="marca">
+        <PropertyRef Name="id_marca" />
+      </Principal>
+      <Dependent Role="autos">
+        <PropertyRef Name="id_marca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BDAutosModelStoreContainer">
+    <EntitySet Name="autos" EntityType="Self.autos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="marca" EntityType="Self.marca" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__autos__id_marca__398D8EEE" Association="Self.FK__autos__id_marca__398D8EEE">
+      <End Role="marca" EntitySet="marca" />
+      <End Role="autos" EntitySet="autos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BDAutosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="autos">
+          <Key>
+            <PropertyRef Name="id_auto" />
+          </Key>
+          <Property Name="id_auto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="placa" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="modelo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_marca" Type="int" Nullable="false" />
+          <Property Name="cc" Type="int" Nullable="false" />
+          <Property Name="color" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="fechafab" Type="datetime" Nullable="false" />
+          <Property Name="estado" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="marca">
+          <Key>
+            <PropertyRef Name="id_marca" />
+          </Key>
+          <Property Name="id_marca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK__autos__id_marca__398D8EEE">
+          <End Role="marca" Type="Self.marca" Multiplicity="1" />
+          <End Role="autos" Type="Self.autos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marca">
+              <PropertyRef Name="id_marca" />
+            </Principal>
+            <Dependent Role="autos">
+              <PropertyRef Name="id_marca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDAutosModelStoreContainer">
+          <EntitySet Name="autos" EntityType="Self.autos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="marca" EntityType="Self.marca" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__autos__id_marca__398D8EEE" Association="Self.FK__autos__id_marca__398D8EEE">
+            <End Role="marca" EntitySet="marca" />
+            <End Role="autos" EntitySet="autos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDAutosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="autos">
+          <Key>
+            <PropertyRef Name="id_auto" />
+          </Key>
+          <Property Name="id_auto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="placa" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_marca" Type="Int32" Nullable="false" />
+          <Property Name="cc" Type="Int32" Nullable="false" />
+          <Property Name="color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fechafab" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="marca" Relationship="Self.FK__autos__id_marca__398D8EEE" FromRole="autos" ToRole="marca" />
+        </EntityType>
+        <EntityType Name="marca">
+          <Key>
+            <PropertyRef Name="id_marca" />
+          </Key>
+          <Property Name="id_marca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="autos" Relationship="Self.FK__autos__id_marca__398D8EEE" FromRole="marca" ToRole="autos" />
+        </EntityType>
+        <Association Name="FK__autos__id_marca__398D8EEE">
+          <End Role="marca" Type="Self.marca" Multiplicity="1" />
+          <End Role="autos" Type="Self.autos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marca">
+              <PropertyRef Name="id_marca" />
+            </Principal>
+            <Dependent Role="autos">
+              <PropertyRef Name="id_marca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDAutosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="autos" EntityType="Self.autos" />
+          <EntitySet Name="marca" EntityType="Self.marca" />
+          <AssociationSet Name="FK__autos__id_marca__398D8EEE" Association="Self.FK__autos__id_marca__398D8EEE">
+            <End Role="marca" EntitySet="marca" />
+            <End Role="autos" EntitySet="autos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDAutosModelStoreContainer" CdmEntityContainer="BDAutosEntities">
+          <EntitySetMapping Name="autos">
+            <EntityTypeMapping TypeName="BDAutosModel.autos">
+              <MappingFragment StoreEntitySet="autos">
+                <ScalarProperty Name="id_auto" ColumnName="id_auto" />
+                <ScalarProperty Name="placa" ColumnName="placa" />
+                <ScalarProperty Name="modelo" ColumnName="modelo" />
+                <ScalarProperty Name="id_marca" ColumnName="id_marca" />
+                <ScalarProperty Name="cc" ColumnName="cc" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="fechafab" ColumnName="fechafab" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="marca">
+            <EntityTypeMapping TypeName="BDAutosModel.marca">
+              <MappingFragment StoreEntitySet="marca">
+                <ScalarProperty Name="id_marca" ColumnName="id_marca" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
